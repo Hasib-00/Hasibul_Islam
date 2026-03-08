@@ -1,0 +1,512 @@
+/* ══════════════════════════════════════
+   ENHANCEMENTS — scroll animations,
+   upgraded transitions, bg effects,
+   micro-interactions
+══════════════════════════════════════ */
+
+/* ── Grain overlay (every page) ── */
+body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 9998;
+    pointer-events: none;
+    opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    animation: grainShift 0.2s steps(1) infinite;
+}
+@keyframes grainShift {
+    0%   { transform: translate(0,0); }
+    10%  { transform: translate(-2%, -3%); }
+    20%  { transform: translate(3%, 1%); }
+    30%  { transform: translate(-1%, 4%); }
+    40%  { transform: translate(4%, -2%); }
+    50%  { transform: translate(-3%, 3%); }
+    60%  { transform: translate(1%, -4%); }
+    70%  { transform: translate(-4%, 1%); }
+    80%  { transform: translate(2%, 4%); }
+    90%  { transform: translate(-2%, -1%); }
+    100% { transform: translate(3%, -3%); }
+}
+
+/* ══════════════════════════════════════
+   PAGE TRANSITION UPGRADE
+   Multi-layer morph with color wash
+══════════════════════════════════════ */
+/* ══════════════════════════════════════
+   UNIVERSAL SCROLL-REVEAL SYSTEM
+   Add  data-reveal  to any element.
+   JS adds  .revealed  on intersection.
+══════════════════════════════════════ */
+[data-reveal] {
+    opacity: 0;
+    transition: opacity 0.9s ease, transform 0.9s var(--ease-out-expo);
+}
+[data-reveal="up"]     { transform: translateY(50px); }
+[data-reveal="left"]   { transform: translateX(-50px); }
+[data-reveal="right"]  { transform: translateX(50px); }
+[data-reveal="scale"]  { transform: scale(0.88); }
+[data-reveal="fade"]   { transform: none; }
+[data-reveal="flip"]   { transform: rotateX(-20deg) translateY(30px); transform-origin: bottom; }
+[data-reveal].revealed {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Stagger children */
+[data-reveal-group] > * {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s var(--ease-out-expo);
+}
+[data-reveal-group].revealed > *:nth-child(1) { opacity:1; transform:none; transition-delay:0.04s; }
+[data-reveal-group].revealed > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.12s; }
+[data-reveal-group].revealed > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.20s; }
+[data-reveal-group].revealed > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.28s; }
+[data-reveal-group].revealed > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.36s; }
+[data-reveal-group].revealed > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.44s; }
+
+/* ══════════════════════════════════════
+   HOME HERO — extra motion layers
+══════════════════════════════════════ */
+
+/* Animated gradient mesh behind the whole home page */
+.hm::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+        radial-gradient(ellipse 70% 50% at 15% 40%, rgba(0,200,255,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 85% 20%, rgba(99,102,241,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 60% 80%, rgba(251,191,36,0.03) 0%, transparent 60%);
+    animation: meshShift 20s ease-in-out infinite alternate;
+}
+@keyframes meshShift {
+    0%   { background-position: 0% 0%; }
+    33%  { background-position: 30% 20%; }
+    66%  { background-position: -10% 30%; }
+    100% { background-position: 20% -10%; }
+}
+
+/* Noise texture over the hm section */
+.hm::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+}
+
+/* Aurora bars — decorative animated stripes */
+.hm-aurora {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.hm-aurora::before,
+.hm-aurora::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,200,255,0.3) 30%, rgba(99,102,241,0.2) 60%, transparent 100%);
+    filter: blur(8px);
+}
+.hm-aurora::before {
+    top: 30%; left: -50%;
+    animation: auroraSlide 12s ease-in-out infinite;
+}
+.hm-aurora::after {
+    top: 65%; left: -50%;
+    animation: auroraSlide 16s ease-in-out infinite reverse 3s;
+}
+@keyframes auroraSlide {
+    0%   { transform: translateX(0%)   skewX(-3deg); opacity: 0; }
+    15%  { opacity: 1; }
+    50%  { transform: translateX(60%)  skewX(2deg); }
+    85%  { opacity: 1; }
+    100% { transform: translateX(110%) skewX(-3deg); opacity: 0; }
+}
+
+/* Name glitch on hover */
+.hm-name-inner {
+    position: relative;
+}
+.hm-name-inner:hover {
+    animation: nameGlitch 0.4s ease;
+}
+@keyframes nameGlitch {
+    0%   { clip-path: none; transform: none; }
+    10%  { clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); transform: translateX(3px); color: #00c8ff; }
+    20%  { clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); transform: translateX(-3px); }
+    30%  { clip-path: none; transform: none; }
+    40%  { clip-path: polygon(0 10%, 100% 10%, 100% 30%, 0 30%); transform: translateX(2px); color: #818cf8; }
+    60%  { clip-path: none; transform: none; color: inherit; }
+    100% { clip-path: none; transform: none; }
+}
+
+/* CTA button shimmer */
+.hm-cta-primary {
+    overflow: hidden;
+    position: relative;
+}
+.hm-cta-primary::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+}
+.hm-cta-primary:hover::before { left: 150%; }
+
+/* Photo wrap — scan reveal on load */
+.hm-photo-wrap {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.2s var(--ease-out-expo) 0.4s;
+}
+.page--active .hm-photo-wrap {
+    clip-path: inset(0% 0 0 0);
+}
+
+/* Float code window entrance */
+.hm-float-code {
+    opacity: 0; transform: translateX(20px) rotate(-1deg);
+    transition: opacity 0.8s ease 0.9s, transform 0.8s var(--ease-out-expo) 0.9s;
+}
+.page--active .hm-float-code { opacity: 1; transform: rotate(-1deg); }
+
+.hm-float-stat {
+    opacity: 0; transform: translateX(-15px);
+    transition: opacity 0.7s ease 1.1s, transform 0.7s var(--ease-out-expo) 1.1s;
+}
+.page--active .hm-float-stat { opacity: 1; transform: translateX(0); }
+
+.hm-float-avail {
+    opacity: 0; transform: translateY(-8px);
+    transition: opacity 0.6s ease 1.3s, transform 0.6s var(--ease-out-expo) 1.3s;
+}
+.page--active .hm-float-avail { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   HOME TICKER — extra polish
+══════════════════════════════════════ */
+.hm-ticker {
+    position: relative;
+}
+.hm-ticker::before,
+.hm-ticker::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+    pointer-events: none;
+}
+.hm-ticker::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--bg), transparent);
+}
+.hm-ticker::after {
+    right: 0;
+    background: linear-gradient(-90deg, var(--bg), transparent);
+}
+
+/* ══════════════════════════════════════
+   HOME ABOUT STRIP — scroll reveals
+══════════════════════════════════════ */
+.hm-about-bignum {
+    transition: opacity 1.2s ease, transform 1.2s var(--ease-out-expo),
+                -webkit-text-stroke 0.6s ease;
+}
+.hm-about:hover .hm-about-bignum {
+    -webkit-text-stroke: 1px rgba(0,200,255,0.15);
+}
+
+.hm-about-circle {
+    position: relative;
+    overflow: hidden;
+}
+.hm-about-circle::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(0,200,255,0.15), transparent 70%);
+    opacity: 0; transition: opacity 0.4s;
+}
+.hm-about-circle:hover::before { opacity: 1; }
+
+/* Stat counter anim */
+.hm-astat-num {
+    display: inline-block;
+    transition: transform 0.4s var(--ease-out-expo), color 0.3s;
+}
+.hm-astat:hover .hm-astat-num {
+    transform: translateY(-4px);
+    color: #00c8ff;
+}
+
+/* ══════════════════════════════════════
+   PROJECTS SECTION — animated bg grid
+══════════════════════════════════════ */
+.hm-projects {
+    position: relative; overflow: hidden;
+}
+.hm-projects::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+        linear-gradient(rgba(0,200,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridDrift 30s linear infinite;
+}
+@keyframes gridDrift {
+    from { background-position: 0 0; }
+    to   { background-position: 60px 60px; }
+}
+.hm-projects::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,200,255,0.025), transparent 70%);
+}
+.hm-projects .dev-grid { position: relative; z-index: 2; }
+.hm-proj-header       { position: relative; z-index: 2; }
+
+/* Card hover — neon glow border */
+.dev-card::after {
+    content: '';
+    position: absolute; inset: -1px; border-radius: 13px;
+    background: linear-gradient(135deg, var(--glow, #00c8ff), transparent 50%, var(--glow, #00c8ff));
+    opacity: 0; z-index: -1;
+    transition: opacity 0.4s ease;
+}
+.dev-card:hover::after { opacity: 0.15; }
+
+/* Section entrance line */
+.hm-proj-header::before {
+    content: '';
+    display: block; width: 0; height: 1px;
+    background: linear-gradient(90deg, rgba(0,200,255,0.5), transparent);
+    margin-bottom: 2rem;
+    transition: width 1.2s var(--ease-out-expo);
+}
+.hm-projects.dev-revealed .hm-proj-header::before { width: 100%; }
+
+/* Project header words clip reveal */
+.hm-proj-title span {
+    display: block; overflow: hidden;
+}
+.hm-proj-title span::after {
+    content: attr(data-text);
+}
+
+/* ══════════════════════════════════════
+   ABOUT PAGE — background upgrade
+══════════════════════════════════════ */
+.ab2-page::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,200,255,0.04), transparent 55%),
+        radial-gradient(ellipse 60% 70% at 80% 70%, rgba(99,102,241,0.04), transparent 55%);
+    animation: meshShift 25s ease-in-out infinite alternate;
+}
+
+/* ID card parallax depth */
+.ab2-id-card {
+    transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
+    transform-style: preserve-3d;
+}
+.ab2-id-card:hover {
+    transform: perspective(800px) rotateY(-6deg) rotateX(3deg) translateZ(10px);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.6), -5px -5px 20px rgba(0,200,255,0.06);
+}
+
+/* Skill bars — shimmer pulse on hover */
+.ab2-skill-bar-fill::after {
+    content: '';
+    position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: skillShimmer 3s ease-in-out infinite;
+}
+@keyframes skillShimmer {
+    0%   { left: -100%; }
+    50%  { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* Timeline track animated draw */
+.ab2-tl-track {
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,200,255,0.25) 10%, rgba(0,200,255,0.25) 90%, transparent 100%);
+    transition: opacity 0.8s ease;
+}
+
+/* Timeline cards — elevated hover */
+.ab2-tl-card {
+    transition: transform 0.4s var(--ease-out-expo), border-color 0.3s, box-shadow 0.4s;
+}
+.ab2-tl-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 50px -15px rgba(0,0,0,0.5);
+}
+
+/* Service cards — glowing bar animates in */
+.ab2-svc-bar {
+    transition: opacity 0.3s, width 1s var(--ease-out-expo);
+    width: 0;
+}
+.ab2-svc-card:hover .ab2-svc-bar { opacity: 1; width: 100%; }
+
+/* Fact items — slide & glow */
+.ab2-fact-item {
+    transition: transform 0.35s var(--ease-out-expo), border-color 0.3s, background 0.3s;
+}
+.ab2-fact-item:hover {
+    transform: translateX(6px);
+    background: rgba(0,200,255,0.03);
+}
+
+/* ══════════════════════════════════════
+   CONTACT PAGE — enhanced animations
+══════════════════════════════════════ */
+.cp-link-card {
+    position: relative;
+    overflow: hidden;
+}
+.cp-link-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(0,200,255,0.06), transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+    pointer-events: none;
+}
+.cp-link-card:hover::after { opacity: 1; }
+
+/* Terminal window — scanline shimmer */
+.cp-term-body {
+    position: relative;
+}
+.cp-term-body::before {
+    content: '';
+    position: absolute; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,255,0.12), transparent);
+    animation: termScan 4s ease-in-out infinite;
+    pointer-events: none; z-index: 10;
+}
+@keyframes termScan {
+    0%   { top: 0%; opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   NAV — hover underline morph
+══════════════════════════════════════ */
+/* nav underline handled by JS initNavAnimations */
+
+/* Logo shimmer on hover */
+.logo-text {
+    position: relative; overflow: hidden;
+}
+.logo-text::after {
+    content: '';
+    position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+}
+.logo-wrap:hover .logo-text::after { left: 150%; }
+
+/* ══════════════════════════════════════
+   WORK PAGE — enhanced background
+══════════════════════════════════════ */
+#page-work .wp-page {
+    position: relative;
+}
+#page-work .wp-page::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0,200,255,0.04), transparent 55%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(99,102,241,0.035), transparent 55%);
+}
+
+/* ══════════════════════════════════════
+   DRAWER — upgraded animations
+══════════════════════════════════════ */
+.pd-drawer {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.7s ease !important;
+}
+
+/* ══════════════════════════════════════
+   GLOBAL HOVER MAGNETIC UNDERLINE
+   for all buttons / links with data-mag
+══════════════════════════════════════ */
+[data-mag] {
+    transition: transform 0.4s var(--ease-out-expo);
+}
+
+/* ══════════════════════════════════════
+   SMOOTH CURSOR TRAIL GLOW
+══════════════════════════════════════ */
+.cursor-trail {
+    position: fixed; z-index: 9990;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: left 0.15s ease, top 0.15s ease;
+}
+
+/* preloader bar removed — handled by new preloader v3 */
+
+/* ══════════════════════════════════════
+   SECTION DIVIDERS — animated gradient
+══════════════════════════════════════ */
+.hm-about,
+.hm-projects,
+.tc-section {
+    position: relative;
+}
+.hm-about::before {
+    content: '';
+    position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,255,0.15), rgba(99,102,241,0.1), transparent);
+    animation: dividerGlow 4s ease-in-out infinite alternate;
+}
+@keyframes dividerGlow {
+    from { opacity: 0.5; }
+    to   { opacity: 1; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE OVERFLOW GUARD
+══════════════════════════════════════ */
+.hm, .cp, .ab2-page {
+    overflow-x: hidden;
+}
+
+
+/* ── Section entered line ── *//* ── Section entered line ── */
+.hm-about.section-entered::before,
+.hm-projects.section-entered::before {
+    /* noop — handled by .hm-projects.dev-revealed .hm-proj-header::before */
+}
+
+/* ── Skill bar position fix ── */
+.ab2-skill-bar-fill {
+    position: relative; overflow: hidden;
+}
+
+/* ── About page background mesh animation ── */
+.ab2-page {
+    position: relative;
+}
+
+/* nav active override removed — JS handles */
+
+/* ── CV Download button ── */
+.ab3-cta-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.ab3-cta-download svg {
+    flex-shrink: 0;
+}

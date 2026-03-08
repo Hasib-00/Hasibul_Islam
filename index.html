@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Md Hasibul Islam — Android Developer from Dhaka, Bangladesh. Kotlin, Jetpack Compose, Firebase, MVVM, Clean Architecture. NSDA Level-4 Certified.">
+    <title>Md Hasibul Islam | Android Developer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/enhancements.css">
+    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/motion-v2.css">
+</head>
+<body>
+<div id="scroll-progress"></div>
+<div class="cursor-trail" id="cursor-trail"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <canvas id="pl-cv"></canvas>
+  <div class="pl-wordmark" id="pl-wordmark">
+    <span class="pl-w-char" style="--i:0">H</span><span class="pl-w-char" style="--i:1">A</span><span class="pl-w-char" style="--i:2">S</span><span class="pl-w-char" style="--i:3">I</span><span class="pl-w-char" style="--i:4">B</span><span class="pl-w-char" style="--i:5">U</span><span class="pl-w-char" style="--i:6">L</span>
+  </div>
+  <div class="pl-line-bar" id="pl-line-bar"><div class="pl-line-fill" id="pl-line-fill"></div></div>
+  <div class="pl-slash" id="pl-slash"></div>
+</div>
+
+<!-- PAGE TRANSITION OVERLAY -->
+<div id="page-transition"></div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV — data-page ties each link to a page id -->
+<nav id="main-nav">
+    <div class="logo" id="logo">
+        <span class="logo-symbol">©</span>
+        <span class="logo-text-wrap">
+            <span class="logo-default">Code by Hasibul</span>
+            <span class="logo-hover">Hasibul Islam</span>
+        </span>
+    </div>
+    <div class="nav-links" id="nav-links">
+        <a href="#" data-page="page-home">Home</a>
+        <a href="#" data-page="page-about">About</a>
+        <a href="#" data-page="page-contact">Contact</a>
+    </div>
+    <!-- Hamburger — hidden at top, appears on scroll -->
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawer-overlay">
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer-panel" id="drawer-panel">
+
+        <!-- Top bar: close button only -->
+        <div class="drawer-topbar">
+            <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Body: label + rule + nav links -->
+        <div class="drawer-body">
+            <p class="drawer-label">Navigation</p>
+            <hr class="drawer-rule">
+            <nav class="drawer-nav">
+                <a href="#" data-page="page-home" class="drawer-link">
+                    <span class="drawer-dot"></span>Home
+                </a>
+                <a href="#" data-page="page-work" class="drawer-link">Work</a>
+                <a href="#" data-page="page-about" class="drawer-link">About</a>
+                <a href="#" data-page="page-contact" class="drawer-link">Contact</a>
+            </nav>
+        </div>
+
+        <!-- Footer socials -->
+        <div class="drawer-footer">
+            <p class="drawer-socials-label">Socials</p>
+            <div class="drawer-socials">
+                <a href="https://github.com/Hasib-00" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/hasibul-islam-a6a434385/" target="_blank">LinkedIn</a>
+                <a href="mailto:mhhasibul.is@gmail.com">Email</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════ -->
+<div class="page page--active" id="page-home">
+<div class="hm">
+
+  <!-- ░ AURORA BARS ░ -->
+  <div class="hm-aurora"></div>
+
+  <!-- ░ CANVAS ░ -->
+  <canvas class="hm-canvas" id="hm-canvas"></canvas>
+
+  <!-- ░ AMBIENT GLOWS ░ -->
+  <div class="hm-glow hm-glow--a"></div>
+  <div class="hm-glow hm-glow--b"></div>
+  <div class="hm-glow hm-glow--c"></div>
+
+  <!-- ░ SCANLINES ░ -->
+  <div class="hm-scanlines"></div>
+
+  <!-- ══════════════════════════════
+       SECTION 01 — HERO
+  ═══════════════════════════════ -->
+  <section class="hm-hero">
+
+    <!-- Top meta bar -->
+    <div class="hm-meta">
+      <div class="hm-meta-left">
+        <span class="hm-meta-dot"></span>
+        <span class="hm-meta-text">hasibul@portfolio:~</span>
+        <span class="hm-meta-branch"> git:(main) ✦</span>
+      </div>
+      <div class="hm-meta-right">
+        <span class="hm-meta-loc">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Dhaka, Bangladesh
+        </span>
+        <span class="hm-meta-avail">
+          <span class="hm-meta-avail-dot"></span>
+          open to work
+        </span>
+      </div>
+    </div>
+
+    <!-- Photo + name block -->
+    <div class="hm-hero-body">
+
+      <!-- Left: huge name + role typewriter + CTAs -->
+      <div class="hm-hero-text">
+        <div class="hm-hero-eyebrow">
+          <span class="hm-eyebrow-num">01</span>
+          <span class="hm-eyebrow-line"></span>
+          <span class="hm-eyebrow-label">// intro</span>
+        </div>
+
+        <h1 class="hm-name">
+          <span class="hm-name-clip">
+            <span class="hm-name-inner">Hasibul</span>
+          </span>
+          <span class="hm-name-clip">
+            <span class="hm-name-inner hm-name-outline">Islam_</span>
+          </span>
+        </h1>
+
+        <div class="hm-role-line">
+          <span class="hm-role-prefix">&gt;&nbsp;</span>
+          <span class="hm-role-typed" id="hm-role-typed"></span>
+          <span class="hm-role-caret">█</span>
+        </div>
+
+        <p class="hm-tagline">
+          Android Developer specialising in <em>Kotlin</em> &amp; <em>Jetpack Compose,</em><br>
+          building reliable, user-focused apps Bangladesh.
+        </p>
+
+        <div class="hm-hero-ctas">
+          <a href="#" class="hm-cta-primary" data-page="page-work" data-mag>
+            <span>View Projects</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+          <a href="#" class="hm-cta-secondary" data-page="page-about">
+            <span>About Me</span>
+          </a>
+          <a href="#" class="hm-cta-icon" data-page="page-contact" title="Contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          </a>
+        </div>
+
+        <div class="hm-socials">
+          <a href="https://github.com/Hasib-00" target="_blank" class="hm-social" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/hasibul-islam-a6a434385/" target="_blank" class="hm-social" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: photo card + floating code window -->
+      <div class="hm-hero-visual">
+
+        <!-- Photo -->
+        <div class="hm-photo-wrap" id="hm-photo-wrap">
+          <div class="hm-photo-ring hm-photo-ring--1"></div>
+          <div class="hm-photo-ring hm-photo-ring--2"></div>
+          <div class="hm-photo-border"></div>
+          <img class="hm-photo"
+               src="https://res.cloudinary.com/dgwn9kjrb/image/upload/v1772704856/lnu1duj81ajebgbd2ere.png"
+               alt="Hasibul Islam">
+          <div class="hm-photo-overlay"></div>
+          <!-- Corner decorations -->
+          <div class="hm-photo-corner hm-photo-corner--tl"></div>
+          <div class="hm-photo-corner hm-photo-corner--tr"></div>
+          <div class="hm-photo-corner hm-photo-corner--bl"></div>
+          <div class="hm-photo-corner hm-photo-corner--br"></div>
+        </div>
+
+        <!-- Floating code window -->
+        <div class="hm-float-code">
+          <div class="hm-fc-bar">
+            <div class="hm-fc-dots">
+              <span style="--c:#ff5f56"></span>
+              <span style="--c:#ffbd2e"></span>
+              <span style="--c:#0077ff"></span>
+            </div>
+            <span class="hm-fc-title">main.kt</span>
+          </div>
+          <pre class="hm-fc-pre"><span style="color:#e06c75">@Composable</span>
+<span style="color:#c678dd">fun</span> <span style="color:#61afef">HasibulPortfolio</span><span style="color:rgba(255,255,255,.4)">()</span> <span style="color:rgba(255,255,255,.4)">{</span>
+  <span style="color:#c678dd">val</span> <span style="color:#e5c07b">skills</span> = <span style="color:#61afef">listOf</span>(
+    <span style="color:#98c379">"Kotlin"</span>, <span style="color:#98c379">"Compose"</span>,
+    <span style="color:#98c379">"Firebase"</span>, <span style="color:#98c379">"Room DB"</span>
+  )
+  <span style="color:#e5c07b">LazyColumn</span> {
+    <span style="color:#61afef">items</span>(<span style="color:#e5c07b">skills</span>) {
+      <span style="color:#e5c07b">SkillChip</span>(<span style="color:#e5c07b">it</span>)
+    }
+  }
+<span style="color:rgba(255,255,255,.4)">}</span><span class="hm-fc-caret"></span></pre>
+        </div>
+
+        <!-- Floating stats pill -->
+        <div class="hm-float-stat">
+          <div class="hm-fs-num">4<span>+</span></div>
+          <div class="hm-fs-label">Projects<br>Built</div>
+        </div>
+
+        <!-- Floating availability -->
+        <div class="hm-float-avail">
+          <span class="hm-fa-dot"></span>
+          <span>Available Now</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hm-scroll-hint">
+      <div class="hm-scroll-line"></div>
+      <span class="hm-scroll-label">scroll</span>
+    </div>
+
+  </section>
+
+  <!-- Ticker strip -->
+  <div class="hm-ticker">
+    <div class="hm-ticker-track" id="hm-ticker-track">
+      <span>Android Dev</span><span class="hm-ticker-sep">✦</span>
+      <span>Jetpack Compose</span><span class="hm-ticker-sep">✦</span>
+      <span>Kotlin</span><span class="hm-ticker-sep">✦</span>
+      <span>Firebase</span><span class="hm-ticker-sep">✦</span>
+      <span>Room Database</span><span class="hm-ticker-sep">✦</span>
+      <span>Clean Architecture</span><span class="hm-ticker-sep">✦</span>
+      <span>MVVM</span><span class="hm-ticker-sep">✦</span>
+      <span>Retrofit</span><span class="hm-ticker-sep">✦</span>
+      <span>Android Dev</span><span class="hm-ticker-sep">✦</span>
+      <span>Jetpack Compose</span><span class="hm-ticker-sep">✦</span>
+      <span>Kotlin</span><span class="hm-ticker-sep">✦</span>
+      <span>Firebase</span><span class="hm-ticker-sep">✦</span>
+      <span>Room Database</span><span class="hm-ticker-sep">✦</span>
+      <span>Clean Architecture</span><span class="hm-ticker-sep">✦</span>
+      <span>MVVM</span><span class="hm-ticker-sep">✦</span>
+      <span>Retrofit</span><span class="hm-ticker-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SECTION 02 — ABOUT STRIP
+  ═══════════════════════════════ -->
+  <section class="hm-about">
+
+    <div class="hm-about-left" data-reveal="left">
+      <div class="hm-about-eyebrow">
+        <span class="hm-eyebrow-num">02</span>
+        <span class="hm-eyebrow-line"></span>
+        <span class="hm-eyebrow-label">// about</span>
+      </div>
+      <div class="hm-about-bignum">HI.</div>
+      <div class="hm-about-circle-wrap" id="hm-circle-wrap">
+        <div class="hm-about-ring-spin"></div>
+        <a href="#" class="hm-about-circle" data-page="page-about">
+          <span>About</span>
+          <span>Me</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hm-about-right" data-reveal="right">
+      <p class="hm-about-bio">
+        I'm <strong>Md Hasibul Islam</strong>, a Dhaka-based Android developer
+        with a Diploma in Computer Science and an NSDA Level-4 certification in
+        Android development. I build focused, well-structured mobile apps using
+        Kotlin and Jetpack Compose — prioritising clean architecture and real-world utility.
+      </p>
+      <div class="hm-about-badges" data-reveal-group>
+        <span>Kotlin</span>
+        <span>Jetpack Compose</span>
+        <span>Firebase</span>
+        <span>MVVM Architecture</span>
+        <span>Room DB</span>
+        <span>Retrofit</span>
+      </div>
+      <div class="hm-about-stats" data-reveal-group>
+        <div class="hm-astat">
+          <span class="hm-astat-num">4+</span>
+          <span class="hm-astat-label">Apps Built</span>
+        </div>
+        <div class="hm-astat-div"></div>
+        <div class="hm-astat">
+          <span class="hm-astat-num">Lv.4</span>
+          <span class="hm-astat-label">NSDA Certified</span>
+        </div>
+        <div class="hm-astat-div"></div>
+        <div class="hm-astat">
+          <span class="hm-astat-num">1+</span>
+          <span class="hm-astat-label">Yrs Experience</span>
+        </div>
+        <div class="hm-astat-div"></div>
+        <div class="hm-astat">
+          <span class="hm-astat-num">UTC+6</span>
+          <span class="hm-astat-label">Dhaka, BD</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════
+       SECTION 03 — PROJECTS
+  ═══════════════════════════════ -->
+  <section class="hm-projects" id="hm-projects">
+
+    <div class="hm-proj-header" data-reveal="up">
+      <div class="hm-proj-header-left">
+        <div class="hm-about-eyebrow">
+          <span class="hm-eyebrow-num">03</span>
+          <span class="hm-eyebrow-line"></span>
+          <span class="hm-eyebrow-label">// selected_work</span>
+        </div>
+        <h2 class="hm-proj-title">
+          <span>Selected</span>
+          <span class="hm-proj-title-out">Projects_</span>
+        </h2>
+      </div>
+      <div class="hm-proj-header-right">
+        <p class="hm-proj-sub">Android Development · Kotlin · Firebase</p>
+        <a href="#" class="hm-viewall" data-page="page-work">
+          <span>View All</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── CARDS GRID ── -->
+        <div class="dev-grid" id="dev-grid">
+      <article class="dev-card" data-project="socialchat">
+        <div class="dev-card-glow" style="--glow:#0095ff;"></div>
+        <div class="dev-card-header">
+          <div class="dev-card-dots"><span style="background:#ff5f56"></span><span style="background:#ffbd2e"></span><span style="background:#0077ff"></span></div>
+          <span class="dev-card-type"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg> Android</span>
+        </div>
+        <div class="dev-card-screen"><div class="dev-card-scanline"></div><div class="dev-code-tabs"><span class="dev-code-tab active">ChatScreen.kt</span><span class="dev-code-tab">FirebaseRepo.kt</span></div><div class="dev-code-body"><div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div><div class="dev-code-content"><pre><span class="dev-code-annot">@Composable</span>
+<span class="dev-code-keyword">fun</span> <span class="dev-code-method">ChatScreen</span><span class="dev-code-punct">(</span>
+  <span class="dev-code-prop">vm</span><span class="dev-code-punct">:</span> <span class="dev-code-class">ChatViewModel</span>
+<span class="dev-code-punct">) {</span>
+  <span class="dev-code-keyword">val</span> <span class="dev-code-prop">msgs</span> <span class="dev-code-keyword">by</span> <span class="dev-code-prop">vm</span><span class="dev-code-punct">.</span><span class="dev-code-method">messages</span>
+    <span class="dev-code-punct">.</span><span class="dev-code-method">collectAsState</span><span class="dev-code-punct">()</span>
+  <span class="dev-code-class">LazyColumn</span> <span class="dev-code-punct">{</span>
+    <span class="dev-code-fn">items</span><span class="dev-code-punct">(</span><span class="dev-code-prop">msgs</span><span class="dev-code-punct">) {</span>
+      <span class="dev-code-class">ChatBubble</span><span class="dev-code-punct">(</span><span class="dev-code-prop">it</span><span class="dev-code-punct">)</span>
+    <span class="dev-code-punct">}</span>
+  <span class="dev-code-punct">}</span>
+<span class="dev-code-punct">}</span><span class="dev-code-caret"></span></pre></div></div></div>
+        <div class="dev-card-body"><div class="dev-card-num">01</div><h3 class="dev-card-name">SocialChat</h3><p class="dev-card-desc">Social media and real-time chat app — Firebase Auth, Firestore, Room DB, MVVM.</p><div class="dev-card-tags"><span>Kotlin</span><span>Firebase</span><span>Room DB</span></div></div>
+        <div class="dev-card-footer"><span class="dev-card-year">2024</span><div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+      </article>
+      <article class="dev-card" data-project="weather">
+        <div class="dev-card-glow" style="--glow:#38bdf8;"></div>
+        <div class="dev-card-header">
+          <div class="dev-card-dots"><span style="background:#ff5f56"></span><span style="background:#ffbd2e"></span><span style="background:#0077ff"></span></div>
+          <span class="dev-card-type"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg> Android</span>
+        </div>
+        <div class="dev-card-screen"><div class="dev-card-scanline"></div><div class="dev-code-tabs"><span class="dev-code-tab active">WeatherVM.kt</span><span class="dev-code-tab">ApiService.kt</span></div><div class="dev-code-body"><div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div><div class="dev-code-content"><pre><span class="dev-code-annot">@HiltViewModel</span>
+<span class="dev-code-keyword">class</span> <span class="dev-code-class">WeatherVM</span>
+<span class="dev-code-annot">@Inject</span> <span class="dev-code-keyword">constructor</span><span class="dev-code-punct">(</span>
+  <span class="dev-code-keyword">private val</span> <span class="dev-code-prop">repo</span>
+    <span class="dev-code-punct">:</span> <span class="dev-code-class">WeatherRepo</span>
+<span class="dev-code-punct">) : ViewModel() {</span>
+  <span class="dev-code-keyword">fun</span> <span class="dev-code-method">fetchByGPS</span><span class="dev-code-punct">(</span>
+    <span class="dev-code-prop">lat</span><span class="dev-code-punct">:</span> <span class="dev-code-class">Double</span>
+  <span class="dev-code-punct">) {</span>
+    <span class="dev-code-fn">launch</span> <span class="dev-code-punct">{</span>
+      <span class="dev-code-prop">repo</span><span class="dev-code-punct">.</span><span class="dev-code-method">get</span><span class="dev-code-punct">(</span><span class="dev-code-prop">lat</span><span class="dev-code-punct">)</span>
+    <span class="dev-code-punct">}</span>
+  <span class="dev-code-punct">}</span>
+<span class="dev-code-punct">}</span><span class="dev-code-caret"></span></pre></div></div></div>
+        <div class="dev-card-body"><div class="dev-card-num">02</div><h3 class="dev-card-name">WeatherNow</h3><p class="dev-card-desc">Live weather app with GPS location detection and OpenWeatherMap API via Retrofit.</p><div class="dev-card-tags"><span>Kotlin</span><span>Retrofit</span><span>GPS</span></div></div>
+        <div class="dev-card-footer"><span class="dev-card-year">2024</span><div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+      </article>
+      <article class="dev-card" data-project="news">
+        <div class="dev-card-glow" style="--glow:#f59e0b;"></div>
+        <div class="dev-card-header">
+          <div class="dev-card-dots"><span style="background:#ff5f56"></span><span style="background:#ffbd2e"></span><span style="background:#0077ff"></span></div>
+          <span class="dev-card-type"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg> Android</span>
+        </div>
+        <div class="dev-card-screen"><div class="dev-card-scanline"></div><div class="dev-code-tabs"><span class="dev-code-tab active">NewsVM.kt</span><span class="dev-code-tab">NewsPager.kt</span></div><div class="dev-code-body"><div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div><div class="dev-code-content"><pre><span class="dev-code-keyword">val</span> <span class="dev-code-prop">newsPager</span> <span class="dev-code-punct">=</span>
+  <span class="dev-code-class">Pager</span><span class="dev-code-punct">(</span>
+    <span class="dev-code-class">PagingConfig</span><span class="dev-code-punct">(</span>
+      <span class="dev-code-prop">pageSize</span> <span class="dev-code-punct">=</span> <span class="dev-code-num">20</span>
+    <span class="dev-code-punct">)</span>
+  <span class="dev-code-punct">) {</span>
+    <span class="dev-code-prop">repo</span><span class="dev-code-punct">.</span><span class="dev-code-method">newsPaging</span><span class="dev-code-punct">(</span>
+      <span class="dev-code-prop">category</span>
+    <span class="dev-code-punct">)</span>
+  <span class="dev-code-punct">}.</span><span class="dev-code-method">flow</span>
+    <span class="dev-code-punct">.</span><span class="dev-code-method">cachedIn</span><span class="dev-code-punct">(</span>
+      <span class="dev-code-prop">viewModelScope</span>
+    <span class="dev-code-punct">)</span><span class="dev-code-caret"></span></pre></div></div></div>
+        <div class="dev-card-body"><div class="dev-card-num">03</div><h3 class="dev-card-name">NewsFlow</h3><p class="dev-card-desc">News aggregator with category filtering, keyword search, and Paging 3 support.</p><div class="dev-card-tags"><span>Kotlin</span><span>Retrofit</span><span>MVVM</span></div></div>
+        <div class="dev-card-footer"><span class="dev-card-year">2024</span><div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+      </article>
+      <article class="dev-card" data-project="locationshare">
+        <div class="dev-card-glow" style="--glow:#818cf8;"></div>
+        <div class="dev-card-header">
+          <div class="dev-card-dots"><span style="background:#ff5f56"></span><span style="background:#ffbd2e"></span><span style="background:#0077ff"></span></div>
+          <span class="dev-card-type"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg> Android</span>
+        </div>
+        <div class="dev-card-screen"><div class="dev-card-scanline"></div><div class="dev-code-tabs"><span class="dev-code-tab active">LocationVM.kt</span><span class="dev-code-tab">MapsActivity.kt</span></div><div class="dev-code-body"><div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div><div class="dev-code-content"><pre><span class="dev-code-keyword">fun</span> <span class="dev-code-method">startTracking</span><span class="dev-code-punct">() {</span>
+  <span class="dev-code-fn">launch</span> <span class="dev-code-punct">{</span>
+    <span class="dev-code-prop">locationRepo</span>
+      <span class="dev-code-punct">.</span><span class="dev-code-method">updates</span><span class="dev-code-punct">()</span>
+      <span class="dev-code-punct">.</span><span class="dev-code-method">collect</span> <span class="dev-code-punct">{</span> <span class="dev-code-prop">loc</span> <span class="dev-code-punct">-></span>
+        <span class="dev-code-prop">firebase</span><span class="dev-code-punct">.</span><span class="dev-code-method">push</span><span class="dev-code-punct">(</span>
+          <span class="dev-code-prop">loc</span>
+        <span class="dev-code-punct">)</span>
+      <span class="dev-code-punct">}</span>
+  <span class="dev-code-punct">}</span>
+<span class="dev-code-punct">}</span><span class="dev-code-caret"></span></pre></div></div></div>
+        <div class="dev-card-body"><div class="dev-card-num">04</div><h3 class="dev-card-name">LocShare</h3><p class="dev-card-desc">Live location sharing with Google Maps SDK, Fused Location API, and Firebase.</p><div class="dev-card-tags"><span>Kotlin</span><span>Maps SDK</span><span>Firebase</span></div></div>
+        <div class="dev-card-footer"><span class="dev-card-year">2024</span><div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       SECTION 04 — CONTACT (terminal)
+  ═══════════════════════════════ -->
+  <section class="tc-section" id="contact-section">
+    <canvas class="tc-particles" id="tc-particles"></canvas>
+    <div class="tc-noise"></div>
+    <div class="tc-statusbar">
+      <div class="tc-status-left">
+        <span class="tc-status-dot tc-dot--green"></span>
+        <span class="tc-status-text">hasibul@portfolio</span>
+        <span class="tc-status-sep">:</span>
+        <span class="tc-status-path">~/contact</span>
+        <span class="tc-status-git"> git:(main)</span>
+      </div>
+      <div class="tc-status-right">
+        <span class="tc-status-badge">● open to work</span>
+        <span class="tc-status-time" id="tc-time">00:00:00</span>
+      </div>
+    </div>
+    <div class="tc-hero">
+      <div class="tc-hero-label">// let's collaborate</div>
+      <h2 class="tc-hero-title">
+        <span class="tc-hero-word" data-tc>GET IN</span>
+        <span class="tc-hero-word tc-hero-word--stroke" data-tc>TOUCH<span class="tc-blink-underscore">_</span></span>
+      </h2>
+      <p class="tc-hero-sub" data-tc><span class="tc-typed" id="tc-typed"></span></p>
+    </div>
+    <div class="tc-grid">
+      <div class="tc-terminal-window" id="tc-terminal">
+        <div class="tc-win-titlebar">
+          <div class="tc-win-dots"><span class="tc-wd tc-wd--red"></span><span class="tc-wd tc-wd--yellow"></span><span class="tc-wd tc-wd--green"></span></div>
+          <span class="tc-win-title">contact.sh — bash</span>
+          <span class="tc-win-badge">zsh 5.9</span>
+        </div>
+        <div class="tc-win-body" id="tc-win-body"></div>
+      </div>
+      <div class="tc-cards">
+        <a href="mailto:mhhasibul.is@gmail.com" class="tc-card" data-tc-card>
+          <div class="tc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="tc-card-body"><span class="tc-card-label">// email</span><span class="tc-card-value">mhhasibul.is@gmail.com</span></div>
+          <div class="tc-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <div class="tc-card-glow"></div>
+        </a>
+        <a href="https://github.com/Hasib-00" target="_blank" class="tc-card" data-tc-card>
+          <div class="tc-card-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+          <div class="tc-card-body"><span class="tc-card-label">// github</span><span class="tc-card-value">github.com/Hasib-00</span></div>
+          <div class="tc-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <div class="tc-card-glow"></div>
+        </a>
+        <a href="https://linkedin.com/in/hasibul-islam-a6a434385/" target="_blank" class="tc-card" data-tc-card>
+          <div class="tc-card-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          <div class="tc-card-body"><span class="tc-card-label">// linkedin</span><span class="tc-card-value">in/hasibul-islam-a6a434385</span></div>
+          <div class="tc-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <div class="tc-card-glow"></div>
+        </a>
+      </div>
+    </div>
+    <div class="tc-footer">
+      <div class="tc-footer-left">
+        <span class="tc-footer-copy">© 2025 Hasibul Islam</span>
+        <span class="tc-footer-sep">·</span>
+        <span class="tc-footer-built">Designed &amp; built by <span style="color:#0095ff">Hasibul Islam</span></span>
+      </div>
+      <div class="tc-footer-right">
+        <span class="tc-footer-stack">Kotlin · Jetpack Compose · Firebase · Room DB</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════════
+     PAGE: ABOUT
+══════════════════════════════════════ -->
+<div class="page" id="page-about">
+<div class="ab3">
+
+  <!-- ░░ BG GRID ░░ -->
+  <div class="ab3-grid-bg"></div>
+  <canvas class="ab3-canvas" id="ab3-canvas"></canvas>
+
+  <!-- ░░ TOPBAR ░░ -->
+  <header class="ab3-topbar">
+    <a href="#" class="ab3-back" data-page="page-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span>cd ..</span>
+    </a>
+    <div class="ab3-breadcrumb">
+      <span class="ab3-bc-dim">~/</span><span class="ab3-bc-dim">hasibul/</span><span class="ab3-bc-active">about.md</span>
+    </div>
+    <div class="ab3-status-row">
+      <span class="ab3-badge ab3-badge--green">
+        <span class="ab3-pulse"></span>available
+      </span>
+      <span class="ab3-badge ab3-badge--dim">UTC+6</span>
+    </div>
+  </header>
+
+  <!-- ░░ HERO SPLIT ░░ -->
+  <section class="ab3-hero">
+
+    <!-- LEFT: System card -->
+    <div class="ab3-sys-panel" data-reveal="left">
+      <div class="ab3-sys-titlebar">
+        <span class="ab3-dot" style="--c:#ff5f56"></span>
+        <span class="ab3-dot" style="--c:#ffbd2e"></span>
+        <span class="ab3-dot" style="--c:#0077ff"></span>
+        <span class="ab3-sys-title">profile.json</span>
+        <span class="ab3-sys-lang">JSON</span>
+      </div>
+      <div class="ab3-sys-body">
+
+        <!-- Avatar -->
+        <div class="ab3-avatar-wrap">
+          <div class="ab3-avatar-hex">
+            <svg viewBox="0 0 100 115" fill="none">
+              <polygon points="50,5 95,28 95,87 50,110 5,87 5,28" fill="rgba(0,200,255,0.06)" stroke="rgba(0,200,255,0.35)" stroke-width="1.2"/>
+              <polygon points="50,18 82,36 82,79 50,97 18,79 18,36" fill="rgba(0,200,255,0.04)" stroke="rgba(0,200,255,0.15)" stroke-width="0.8"/>
+              <circle cx="50" cy="44" r="16" fill="rgba(0,200,255,0.18)" stroke="rgba(0,200,255,0.5)" stroke-width="1"/>
+              <circle cx="50" cy="43" r="9" fill="rgba(0,200,255,0.3)"/>
+              <path d="M22 88c0-15.5 12.5-28 28-28s28 12.5 28 28" fill="rgba(0,200,255,0.12)" stroke="rgba(0,200,255,0.4)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="ab3-av-status">
+            <span class="ab3-pulse ab3-pulse--sm"></span>
+            <span>open_to_work</span>
+          </div>
+        </div>
+
+        <!-- JSON data -->
+        <div class="ab3-json" id="ab3-json"></div>
+
+        <!-- Location + time row -->
+        <div class="ab3-sys-meta">
+          <span><svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> Dhaka, Bangladesh</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span id="ab3-time">--:--</span> local</span>
+        </div>
+      </div>
+
+      <!-- Tech orbit -->
+      <div class="ab3-tech-row">
+        <span class="ab3-tech-tag">Kotlin</span>
+        <span class="ab3-tech-tag">Jetpack Compose</span>
+        <span class="ab3-tech-tag">Firebase</span>
+        <span class="ab3-tech-tag">Room DB</span>
+        <span class="ab3-tech-tag">Retrofit</span>
+        <span class="ab3-tech-tag">MVVM</span>
+        <span class="ab3-tech-tag">Hilt</span>
+        <span class="ab3-tech-tag">Android Studio</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Bio -->
+    <div class="ab3-bio-panel">
+      <div class="ab3-bio-eyebrow" data-reveal="up">// 02 — about</div>
+
+      <h1 class="ab3-bio-name" data-reveal="up">
+        <span class="ab3-bio-name-solid">Hasibul</span>
+        <span class="ab3-bio-name-out">Islam</span>
+      </h1>
+
+      <div class="ab3-role-line" data-reveal="up">
+        <span class="ab3-role-prefix">&gt;&nbsp;</span>
+        <span class="ab3-role-text" id="ab3-role"></span>
+        <span class="ab3-role-caret">█</span>
+      </div>
+
+      <p class="ab3-bio-text" data-reveal="up">
+        I'm an Android developer from <em>Dhaka, Bangladesh</em>, focused on building
+        reliable, well-structured mobile applications. I completed a Diploma in
+        Computer Science at Dhaka Polytechnic Institute and earned a Level-4 Android
+        Development certification from the <em>National Skills Development Authority (NSDA)</em>.
+        I work with <em>Kotlin</em>, <em>Jetpack Compose</em>, and <em>Firebase</em>,
+        applying MVVM and Clean Architecture on every project I build.
+      </p>
+
+      <!-- Trait pills -->
+      <div class="ab3-traits" data-reveal="up">
+        <span class="ab3-trait"><span class="ab3-trait-icon">▸</span>MVVM &amp; Clean Architecture</span>
+        <span class="ab3-trait"><span class="ab3-trait-icon">▸</span>Performance-Oriented</span>
+        <span class="ab3-trait"><span class="ab3-trait-icon">▸</span>NSDA Certified</span>
+        <span class="ab3-trait"><span class="ab3-trait-icon">▸</span>Detail-Driven</span>
+      </div>
+
+      <div class="ab3-cta-row" data-reveal="up">
+        <a href="#" class="ab3-cta-primary" data-page="page-work">
+          <span>View Projects</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="Hasibul_Islam_CV.pdf" download="Hasibul_Islam_CV.pdf" class="ab3-cta-ghost ab3-cta-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+        <a href="#" class="ab3-cta-ghost" data-page="page-contact">Get in Touch</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ░░ STATS BAR ░░ -->
+  <section class="ab3-stats" id="ab3-stats">
+    <div class="ab3-stat" data-target="1">
+      <div class="ab3-stat-num"><span data-count>0</span><span class="ab3-stat-unit">+</span></div>
+      <div class="ab3-stat-label">Years Experience</div>
+      <div class="ab3-stat-bar"><div class="ab3-stat-fill" style="--w:35%"></div></div>
+    </div>
+    <div class="ab3-stat-div"></div>
+    <div class="ab3-stat" data-target="4">
+      <div class="ab3-stat-num"><span data-count>0</span><span class="ab3-stat-unit">+</span></div>
+      <div class="ab3-stat-label">Projects Completed</div>
+      <div class="ab3-stat-bar"><div class="ab3-stat-fill" style="--w:60%"></div></div>
+    </div>
+    <div class="ab3-stat-div"></div>
+    <div class="ab3-stat" data-target="6">
+      <div class="ab3-stat-num"><span data-count>0</span><span class="ab3-stat-unit">+</span></div>
+      <div class="ab3-stat-label">Tech Stack Tools</div>
+      <div class="ab3-stat-bar"><div class="ab3-stat-fill" style="--w:80%"></div></div>
+    </div>
+    <div class="ab3-stat-div"></div>
+    <div class="ab3-stat" data-target="200">
+      <div class="ab3-stat-num"><span data-count>0</span><span class="ab3-stat-unit">+</span></div>
+      <div class="ab3-stat-label">GitHub Commits</div>
+      <div class="ab3-stat-bar"><div class="ab3-stat-fill" style="--w:70%"></div></div>
+    </div>
+  </section>
+
+  <!-- ░░ SKILLS — code diff style ░░ -->
+  <section class="ab3-skills">
+    <div class="ab3-section-head">
+      <span class="ab3-eyebrow">// tech_stack.diff</span>
+      <h2 class="ab3-section-title">Skills &amp; <em>Arsenal</em></h2>
+    </div>
+
+    <div class="ab3-skills-wrap">
+      <!-- Tab bar like editor tabs -->
+      <div class="ab3-tabs" id="ab3-tabs">
+        <button class="ab3-tab ab3-tab--on" data-tab="android">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg>
+          android.kt
+        </button>
+        <button class="ab3-tab" data-tab="web">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          backend.kt
+        </button>
+        <button class="ab3-tab" data-tab="tools">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          tools.sh
+        </button>
+        <div class="ab3-tab-ink" id="ab3-tab-ink"></div>
+      </div>
+
+      <div class="ab3-skills-body" id="ab3-skills-body">
+
+        <div class="ab3-spanel ab3-spanel--on" data-panel="android">
+          <div class="ab3-sk-row" data-pct="95"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#0095ff"></span><span class="ab3-sk-name">Kotlin</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:95%"></div></div><span class="ab3-sk-pct">95%</span></div>
+          <div class="ab3-sk-row" data-pct="90"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#4fc3f7"></span><span class="ab3-sk-name">Jetpack Compose</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:90%"></div></div><span class="ab3-sk-pct">90%</span></div>
+          <div class="ab3-sk-row" data-pct="88"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#ce93d8"></span><span class="ab3-sk-name">MVVM / Clean Arch</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:88%"></div></div><span class="ab3-sk-pct">88%</span></div>
+          <div class="ab3-sk-row" data-pct="85"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#ffb74d"></span><span class="ab3-sk-name">Firebase</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:85%"></div></div><span class="ab3-sk-pct">85%</span></div>
+          <div class="ab3-sk-row" data-pct="82"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#f48fb1"></span><span class="ab3-sk-name">Hilt / Dagger</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:82%"></div></div><span class="ab3-sk-pct">82%</span></div>
+          <div class="ab3-sk-row" data-pct="80"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#80cbc4"></span><span class="ab3-sk-name">Room DB / Flow</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:80%"></div></div><span class="ab3-sk-pct">80%</span></div>
+        </div>
+
+        <div class="ab3-spanel" data-panel="web">
+          <div class="ab3-sk-row" data-pct="88"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#ffb300"></span><span class="ab3-sk-name">Firebase (Auth/Firestore/Storage)</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:88%"></div></div><span class="ab3-sk-pct">88%</span></div>
+          <div class="ab3-sk-row" data-pct="85"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#4db6ac"></span><span class="ab3-sk-name">REST APIs / Retrofit</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:85%"></div></div><span class="ab3-sk-pct">85%</span></div>
+          <div class="ab3-sk-row" data-pct="82"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#80cbc4"></span><span class="ab3-sk-name">Room Database / SQLite</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:82%"></div></div><span class="ab3-sk-pct">82%</span></div>
+          <div class="ab3-sk-row" data-pct="78"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#ce93d8"></span><span class="ab3-sk-name">MySQL</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:78%"></div></div><span class="ab3-sk-pct">78%</span></div>
+          <div class="ab3-sk-row" data-pct="75"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#4dd0e1"></span><span class="ab3-sk-name">Coroutines &amp; Flow</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:75%"></div></div><span class="ab3-sk-pct">75%</span></div>
+          <div class="ab3-sk-row" data-pct="70"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#54a0ff"></span><span class="ab3-sk-name">Flutter (Internship)</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:70%"></div></div><span class="ab3-sk-pct">70%</span></div>
+        </div>
+
+        <div class="ab3-spanel" data-panel="tools">
+          <div class="ab3-sk-row" data-pct="95"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#f05032"></span><span class="ab3-sk-name">Git / GitHub</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:95%"></div></div><span class="ab3-sk-pct">95%</span></div>
+          <div class="ab3-sk-row" data-pct="90"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#0095ff"></span><span class="ab3-sk-name">Android Studio</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:90%"></div></div><span class="ab3-sk-pct">90%</span></div>
+          <div class="ab3-sk-row" data-pct="88"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#007acc"></span><span class="ab3-sk-name">VS Code</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:88%"></div></div><span class="ab3-sk-pct">88%</span></div>
+          <div class="ab3-sk-row" data-pct="82"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#f24e1e"></span><span class="ab3-sk-name">Figma</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:82%"></div></div><span class="ab3-sk-pct">82%</span></div>
+          <div class="ab3-sk-row" data-pct="80"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#2496ed"></span><span class="ab3-sk-name">XML Layouts</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:80%"></div></div><span class="ab3-sk-pct">80%</span></div>
+          <div class="ab3-sk-row" data-pct="75"><div class="ab3-sk-left"><span class="ab3-sk-dot" style="--c:#e05d44"></span><span class="ab3-sk-name">Postman / API Testing</span></div><div class="ab3-sk-track"><div class="ab3-sk-bar" style="--w:75%"></div></div><span class="ab3-sk-pct">75%</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ TIMELINE — git log style ░░ -->
+  <section class="ab3-tl">
+    <div class="ab3-section-head">
+      <span class="ab3-eyebrow">// git log --oneline</span>
+      <h2 class="ab3-section-title">My <em>Journey</em></h2>
+    </div>
+
+    <div class="ab3-tl-wrap">
+
+      <div class="ab3-tl-entry" data-reveal="left">
+        <div class="ab3-tl-sha">
+          <span class="ab3-sha-dot ab3-sha-dot--active"></span>
+          <span class="ab3-sha-code">a3f9c12</span>
+        </div>
+        <div class="ab3-tl-card">
+          <div class="ab3-tl-card-glow" style="--gc:#0095ff"></div>
+          <div class="ab3-tl-top">
+            <span class="ab3-tl-year">2024 — Present</span>
+            <span class="ab3-tl-chip ab3-tl-chip--green">● Active</span>
+          </div>
+          <h3 class="ab3-tl-role">Android Developer</h3>
+          <p class="ab3-tl-org">Independent Projects · Dhaka, Bangladesh</p>
+          <p class="ab3-tl-desc">Building Android applications independently, covering real-world use cases including social networking, real-time chat, weather data retrieval, and live location sharing. Each project is structured with MVVM and Clean Architecture, integrating Firebase, Retrofit, and Jetpack components.</p>
+          <div class="ab3-tl-tags"><span>Kotlin</span><span>Jetpack Compose</span><span>Firebase</span><span>MVVM</span></div>
+        </div>
+      </div>
+
+      <div class="ab3-tl-entry" data-reveal="right">
+        <div class="ab3-tl-sha">
+          <span class="ab3-sha-dot"></span>
+          <span class="ab3-sha-code">b7e2d05</span>
+        </div>
+        <div class="ab3-tl-card">
+          <div class="ab3-tl-card-glow" style="--gc:#818cf8"></div>
+          <div class="ab3-tl-top">
+            <span class="ab3-tl-year">2024</span>
+          </div>
+          <h3 class="ab3-tl-role">Android Mobile App Development (Level-4)</h3>
+          <p class="ab3-tl-org">Daffodil International Professional Training Institute 🏆</p>
+          <p class="ab3-tl-desc">Completed a structured, industry-aligned Android development programme at Daffodil International Professional Training Institute, earning a Level-4 certification issued by the National Skill Development Authority (NSDA). Curriculum covered Kotlin, Jetpack components, Firebase integration, and production-ready app architecture.</p>
+          <div class="ab3-tl-tags"><span>Kotlin</span><span>Jetpack</span><span>Firebase</span><span>NSDA Certified</span></div>
+        </div>
+      </div>
+
+      <div class="ab3-tl-entry" data-reveal="left">
+        <div class="ab3-tl-sha">
+          <span class="ab3-sha-dot"></span>
+          <span class="ab3-sha-code">c1a8f33</span>
+        </div>
+        <div class="ab3-tl-card">
+          <div class="ab3-tl-card-glow" style="--gc:#f59e0b"></div>
+          <div class="ab3-tl-top">
+            <span class="ab3-tl-year">2021 — 2024</span>
+          </div>
+          <h3 class="ab3-tl-role">Diploma in Engineering – Computer Science &amp; Technology</h3>
+          <p class="ab3-tl-org">Dhaka Polytechnic Institute · Dhaka, Bangladesh 🎓</p>
+          <p class="ab3-tl-desc">Completed a Diploma in Engineering with a focus on Computer Science &amp; Technology at Dhaka Polytechnic Institute, building a strong foundation in programming, data structures, and software engineering. Complemented academic study with an internship in Mobile Application Development using Flutter at Daffodil International Professional Training Institute.</p>
+          <div class="ab3-tl-tags"><span>Computer Science</span><span>Flutter Internship</span><span>Software Engineering</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ SERVICES — 2×2 grid ░░ -->
+  <section class="ab3-services">
+    <div class="ab3-section-head">
+      <span class="ab3-eyebrow">// what_i_build.ts</span>
+      <h2 class="ab3-section-title">What I <em>Build</em></h2>
+    </div>
+    <div class="ab3-svc-grid" data-reveal-group>
+
+      <div class="ab3-svc">
+        <div class="ab3-svc-top">
+          <span class="ab3-svc-num">01</span>
+          <div class="ab3-svc-icon" style="--ic:#0095ff">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg>
+          </div>
+        </div>
+        <h3 class="ab3-svc-title">Android Development</h3>
+        <p class="ab3-svc-desc">Native Android applications built with Kotlin and Jetpack Compose, structured around MVVM and Clean Architecture principles for long-term maintainability and performance.</p>
+        <ul class="ab3-svc-list"><li>Kotlin &amp; Jetpack Compose UI</li><li>MVVM / Clean Architecture</li><li>Hilt Dependency Injection</li><li>Firebase &amp; Google Maps SDK</li></ul>
+        <div class="ab3-svc-accent" style="--gc:#0095ff"></div>
+      </div>
+
+      <div class="ab3-svc">
+        <div class="ab3-svc-top">
+          <span class="ab3-svc-num">02</span>
+          <div class="ab3-svc-icon" style="--ic:#818cf8">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+        </div>
+        <h3 class="ab3-svc-title">Firebase &amp; Backend Integration</h3>
+        <p class="ab3-svc-desc">Robust backend integration using Firebase services — enabling real-time data sync, secure authentication, and efficient cloud storage for Android apps.</p>
+        <ul class="ab3-svc-list"><li>Firebase Auth &amp; Firestore</li><li>Firebase Realtime Database</li><li>Firebase Cloud Storage</li><li>REST API integration via Retrofit</li></ul>
+        <div class="ab3-svc-accent" style="--gc:#818cf8"></div>
+      </div>
+
+      <div class="ab3-svc">
+        <div class="ab3-svc-top">
+          <span class="ab3-svc-num">03</span>
+          <div class="ab3-svc-icon" style="--ic:#f59e0b">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+        </div>
+        <h3 class="ab3-svc-title">Local Data &amp; Offline Support</h3>
+        <p class="ab3-svc-desc">Offline-first Android applications using Room Database and structured local caching, ensuring a seamless user experience regardless of connectivity.</p>
+        <ul class="ab3-svc-list"><li>Room Database &amp; DAOs</li><li>SQLite data management</li><li>Offline-first architecture</li><li>WorkManager background tasks</li></ul>
+        <div class="ab3-svc-accent" style="--gc:#f59e0b"></div>
+      </div>
+
+      <div class="ab3-svc">
+        <div class="ab3-svc-top">
+          <span class="ab3-svc-num">04</span>
+          <div class="ab3-svc-icon" style="--ic:#38bdf8">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"/></svg>
+          </div>
+        </div>
+        <h3 class="ab3-svc-title">Networking &amp; API Integration</h3>
+        <p class="ab3-svc-desc">Reliable network communication in Android apps using Retrofit and REST APIs, with structured error handling, JSON parsing, and efficient data flow via Coroutines.</p>
+        <ul class="ab3-svc-list"><li>Retrofit &amp; REST APIs</li><li>JSON parsing &amp; data models</li><li>Kotlin Coroutines &amp; Flow</li><li>Structured error handling</li></ul>
+        <div class="ab3-svc-accent" style="--gc:#38bdf8"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ CONNECT BANNER ░░ -->
+  <section class="ab3-connect">
+    <div class="ab3-connect-noise"></div>
+    <div class="ab3-connect-inner" data-reveal="up">
+      <span class="ab3-eyebrow">// let_s_talk.sh</span>
+      <h2 class="ab3-connect-title">Have a project<br><em>in mind?</em></h2>
+      <p class="ab3-connect-sub">Open to Android development roles, freelance projects, and entry-level opportunities.<br>Let's build something meaningful together.</p>
+      <div class="ab3-connect-actions">
+        <a href="#" class="ab3-cta-primary" data-page="page-contact">
+          <span>Start a Conversation</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="mailto:mhhasibul.is@gmail.com" class="ab3-cta-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Send Email
+        </a>
+      </div>
+      <div class="ab3-connect-socials">
+        <a href="https://github.com/Hasib-00" target="_blank" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://linkedin.com/in/hasibul-islam-a6a434385/" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:mhhasibul.is@gmail.com" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE: WORK  (placeholder)
+══════════════════════════════════════ -->
+<div class="page" id="page-work">
+<section class="wp-section">
+
+    <!-- Noise -->
+    <div class="wp-noise"></div>
+
+    <!-- Top nav bar -->
+    <div class="wp-topbar">
+        <a href="#" class="wp-back" data-page="page-home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            <span>Back</span>
+        </a>
+        <span class="wp-topbar-title">~/projects</span>
+        <span class="wp-topbar-count" id="wp-count">04 projects</span>
+    </div>
+
+    <!-- Header -->
+    <div class="wp-header">
+        <div class="wp-header-left">
+            <p class="wp-eyebrow">
+                <span class="wp-eyebrow-dot"></span>
+                All Work
+            </p>
+            <h1 class="wp-title">
+                <span class="wp-title-line">Selected</span>
+                <span class="wp-title-line wp-title-outline">Projects_</span>
+            </h1>
+            <p class="wp-subtitle">Android Development · Kotlin · Firebase · 2024</p>
+        </div>
+        <div class="wp-header-right">
+            <!-- Filter bar -->
+            <div class="wp-filters" id="wp-filters">
+                <button class="wp-filter wp-filter--active" data-filter="all">All</button>
+                <button class="wp-filter" data-filter="android">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg>
+                    Android
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards grid -->
+        <div class="wp-grid" id="wp-grid">
+        <article class="dev-card wp-card" data-project="socialchat" data-type="android">
+            <div class="dev-card-glow" style="--glow:#0095ff;"></div>
+            <div class="dev-card-header">
+                <div class="dev-card-dots">
+                    <span style="background:#ff5f56"></span>
+                    <span style="background:#ffbd2e"></span>
+                    <span style="background:#0077ff"></span>
+                </div>
+                <span class="dev-card-type">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg>
+                    Android
+                </span>
+            </div>
+            <div class="dev-card-screen">
+                <div class="dev-card-scanline"></div>
+                <div class="dev-code-tabs">
+                    <span class="dev-code-tab active">ChatScreen.kt</span>
+                    <span class="dev-code-tab">FirebaseRepo.kt</span>
+                </div>
+                <div class="dev-code-body">
+                    <div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+                    <div class="dev-code-content"><pre><span class="dev-code-annot">@Composable</span>
+<span class="dev-code-keyword">fun</span> <span class="dev-code-method">ChatScreen</span><span class="dev-code-punct">(</span>
+  <span class="dev-code-prop">vm</span><span class="dev-code-punct">:</span> <span class="dev-code-class">ChatViewModel</span>
+<span class="dev-code-punct">) {</span>
+  <span class="dev-code-keyword">val</span> <span class="dev-code-prop">msgs</span> <span class="dev-code-keyword">by</span> <span class="dev-code-prop">vm</span><span class="dev-code-punct">.</span><span class="dev-code-method">messages</span>
+    <span class="dev-code-punct">.</span><span class="dev-code-method">collectAsState</span><span class="dev-code-punct">()</span>
+  <span class="dev-code-class">LazyColumn</span> <span class="dev-code-punct">{</span>
+    <span class="dev-code-fn">items</span><span class="dev-code-punct">(</span><span class="dev-code-prop">msgs</span><span class="dev-code-punct">) {</span>
+      <span class="dev-code-class">ChatBubble</span><span class="dev-code-punct">(</span><span class="dev-code-prop">it</span><span class="dev-code-punct">)</span>
+    <span class="dev-code-punct">}</span>
+  <span class="dev-code-punct">}</span>
+<span class="dev-code-punct">}</span><span class="dev-code-caret"></span></pre></div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <div class="dev-card-num">01</div>
+                <h3 class="dev-card-name">SocialChat</h3>
+                <p class="dev-card-desc">Social media and real-time chat — Firebase Auth, Firestore, Room DB, MVVM.</p>
+                <div class="dev-card-tags"><span>Kotlin</span><span>Firebase</span><span>Room DB</span></div>
+            </div>
+            <div class="dev-card-footer">
+                <span class="dev-card-year">2024</span>
+                <div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+            </div>
+        </article>
+        <article class="dev-card wp-card" data-project="weather" data-type="android">
+            <div class="dev-card-glow" style="--glow:#38bdf8;"></div>
+            <div class="dev-card-header">
+                <div class="dev-card-dots">
+                    <span style="background:#ff5f56"></span>
+                    <span style="background:#ffbd2e"></span>
+                    <span style="background:#0077ff"></span>
+                </div>
+                <span class="dev-card-type">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg>
+                    Android
+                </span>
+            </div>
+            <div class="dev-card-screen">
+                <div class="dev-card-scanline"></div>
+                <div class="dev-code-tabs">
+                    <span class="dev-code-tab active">WeatherVM.kt</span>
+                    <span class="dev-code-tab">ApiService.kt</span>
+                </div>
+                <div class="dev-code-body">
+                    <div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+                    <div class="dev-code-content"><pre><span class="dev-code-annot">@HiltViewModel</span>
+<span class="dev-code-keyword">class</span> <span class="dev-code-class">WeatherVM</span>
+<span class="dev-code-annot">@Inject</span> <span class="dev-code-keyword">constructor</span><span class="dev-code-punct">(</span>
+  <span class="dev-code-keyword">private val</span> <span class="dev-code-prop">repo</span>
+    <span class="dev-code-punct">:</span> <span class="dev-code-class">WeatherRepo</span>
+<span class="dev-code-punct">) : ViewModel() {</span>
+  <span class="dev-code-keyword">fun</span> <span class="dev-code-method">fetchByGPS</span><span class="dev-code-punct">(</span>
+    <span class="dev-code-prop">lat</span><span class="dev-code-punct">:</span> <span class="dev-code-class">Double</span>
+  <span class="dev-code-punct">) {</span>
+    <span class="dev-code-fn">launch</span> <span class="dev-code-punct">{</span>
+      <span class="dev-code-prop">repo</span><span class="dev-code-punct">.</span><span class="dev-code-method">get</span><span class="dev-code-punct">(</span><span class="dev-code-prop">lat</span><span class="dev-code-punct">)</span>
+    <span class="dev-code-punct">}</span>
+  <span class="dev-code-punct">}</span>
+<span class="dev-code-punct">}</span><span class="dev-code-caret"></span></pre></div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <div class="dev-card-num">02</div>
+                <h3 class="dev-card-name">WeatherNow</h3>
+                <p class="dev-card-desc">Live weather app with GPS location detection and OpenWeatherMap API via Retrofit.</p>
+                <div class="dev-card-tags"><span>Kotlin</span><span>Retrofit</span><span>GPS</span></div>
+            </div>
+            <div class="dev-card-footer">
+                <span class="dev-card-year">2024</span>
+                <div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+            </div>
+        </article>
+        <article class="dev-card wp-card" data-project="news" data-type="android">
+            <div class="dev-card-glow" style="--glow:#f59e0b;"></div>
+            <div class="dev-card-header">
+                <div class="dev-card-dots">
+                    <span style="background:#ff5f56"></span>
+                    <span style="background:#ffbd2e"></span>
+                    <span style="background:#0077ff"></span>
+                </div>
+                <span class="dev-card-type">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg>
+                    Android
+                </span>
+            </div>
+            <div class="dev-card-screen">
+                <div class="dev-card-scanline"></div>
+                <div class="dev-code-tabs">
+                    <span class="dev-code-tab active">NewsVM.kt</span>
+                    <span class="dev-code-tab">NewsPager.kt</span>
+                </div>
+                <div class="dev-code-body">
+                    <div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+                    <div class="dev-code-content"><pre><span class="dev-code-keyword">val</span> <span class="dev-code-prop">newsPager</span> <span class="dev-code-punct">=</span>
+  <span class="dev-code-class">Pager</span><span class="dev-code-punct">(</span>
+    <span class="dev-code-class">PagingConfig</span><span class="dev-code-punct">(</span>
+      <span class="dev-code-prop">pageSize</span> <span class="dev-code-punct">=</span> <span class="dev-code-num">20</span>
+    <span class="dev-code-punct">)</span>
+  <span class="dev-code-punct">) {</span>
+    <span class="dev-code-prop">repo</span><span class="dev-code-punct">.</span><span class="dev-code-method">newsPaging</span><span class="dev-code-punct">(</span>
+      <span class="dev-code-prop">category</span>
+    <span class="dev-code-punct">)</span>
+  <span class="dev-code-punct">}.</span><span class="dev-code-method">flow</span>
+    <span class="dev-code-punct">.</span><span class="dev-code-method">cachedIn</span><span class="dev-code-punct">(</span>
+      <span class="dev-code-prop">viewModelScope</span>
+    <span class="dev-code-punct">)</span><span class="dev-code-caret"></span></pre></div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <div class="dev-card-num">03</div>
+                <h3 class="dev-card-name">NewsFlow</h3>
+                <p class="dev-card-desc">News aggregator with category filtering, keyword search, and Paging 3 support.</p>
+                <div class="dev-card-tags"><span>Kotlin</span><span>Retrofit</span><span>MVVM</span></div>
+            </div>
+            <div class="dev-card-footer">
+                <span class="dev-card-year">2024</span>
+                <div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+            </div>
+        </article>
+        <article class="dev-card wp-card" data-project="locationshare" data-type="android">
+            <div class="dev-card-glow" style="--glow:#818cf8;"></div>
+            <div class="dev-card-header">
+                <div class="dev-card-dots">
+                    <span style="background:#ff5f56"></span>
+                    <span style="background:#ffbd2e"></span>
+                    <span style="background:#0077ff"></span>
+                </div>
+                <span class="dev-card-type">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.11 1 12 1c-1.12 0-2.16.23-3.13.63L7.4.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.01 3.23 4.48 5.38 4.27 8h15.46c-.21-2.62-1.74-4.77-4.2-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z"/></svg>
+                    Android
+                </span>
+            </div>
+            <div class="dev-card-screen">
+                <div class="dev-card-scanline"></div>
+                <div class="dev-code-tabs">
+                    <span class="dev-code-tab active">LocationVM.kt</span>
+                    <span class="dev-code-tab">MapsActivity.kt</span>
+                </div>
+                <div class="dev-code-body">
+                    <div class="dev-code-lines"><span>1</span><span>2</span><span>3</span><span class="dev-code-line-active">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+                    <div class="dev-code-content"><pre><span class="dev-code-keyword">fun</span> <span class="dev-code-method">startTracking</span><span class="dev-code-punct">() {</span>
+  <span class="dev-code-fn">launch</span> <span class="dev-code-punct">{</span>
+    <span class="dev-code-prop">locationRepo</span>
+      <span class="dev-code-punct">.</span><span class="dev-code-method">updates</span><span class="dev-code-punct">()</span>
+      <span class="dev-code-punct">.</span><span class="dev-code-method">collect</span> <span class="dev-code-punct">{</span> <span class="dev-code-prop">loc</span> <span class="dev-code-punct">-></span>
+        <span class="dev-code-prop">firebase</span><span class="dev-code-punct">.</span><span class="dev-code-method">push</span><span class="dev-code-punct">(</span>
+          <span class="dev-code-prop">loc</span>
+        <span class="dev-code-punct">)</span>
+      <span class="dev-code-punct">}</span>
+  <span class="dev-code-punct">}</span>
+<span class="dev-code-punct">}</span><span class="dev-code-caret"></span></pre></div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <div class="dev-card-num">04</div>
+                <h3 class="dev-card-name">LocShare</h3>
+                <p class="dev-card-desc">Live location sharing with Google Maps SDK, Fused Location API, and Firebase.</p>
+                <div class="dev-card-tags"><span>Kotlin</span><span>Maps SDK</span><span>Firebase</span></div>
+            </div>
+            <div class="dev-card-footer">
+                <span class="dev-card-year">2024</span>
+                <div class="dev-card-link">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+            </div>
+        </article>
+
+    </div><!-- /wp-grid -->
+
+</section>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE: CONTACT  (placeholder)
+══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+<div class="cp">
+  <canvas class="cp-canvas" id="cp-canvas"></canvas>
+  <div class="cp-scanlines"></div>
+  <div class="cp-glow cp-glow--a"></div>
+  <div class="cp-glow cp-glow--b"></div>
+
+  <!-- Topbar -->
+  <header class="cp-topbar">
+    <a href="#" class="cp-back" data-page="page-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span>cd ..</span>
+    </a>
+    <div class="cp-breadcrumb">
+      <span class="cp-bc-dim">~/</span><span class="cp-bc-dim">portfolio/</span><span class="cp-bc-active">contact.sh</span>
+    </div>
+    <div class="cp-status">
+      <span class="cp-status-dot"></span>
+      <span class="cp-status-time" id="cp-clock">00:00:00</span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="cp-hero" data-reveal="up">
+    <p class="cp-eyebrow">// 04 — contact</p>
+    <h1 class="cp-hero-title">
+      <span class="cp-ht-line">Let's</span>
+      <span class="cp-ht-line cp-ht-outline">Connect<span class="cp-ht-cursor">_</span></span>
+    </h1>
+    <p class="cp-hero-sub">Available for Android development roles, freelance projects, and internship opportunities.</p>
+  </div>
+
+  <!-- Main grid -->
+  <div class="cp-grid" data-reveal="up">
+
+    <!-- LEFT: form terminal -->
+    <div class="cp-form-wrap">
+      <div class="cp-terminal">
+        <div class="cp-term-bar">
+          <div class="cp-term-dots">
+            <span style="--c:#ff5f56"></span>
+            <span style="--c:#ffbd2e"></span>
+            <span style="--c:#0077ff"></span>
+          </div>
+          <span class="cp-term-title">send_message.sh</span>
+          <span class="cp-term-pid">PID: 1337</span>
+        </div>
+        <div class="cp-term-body">
+          <div class="cp-term-prompt">
+            <span class="cp-tp-path">hasibul@portfolio:~/contact</span>
+            <span class="cp-tp-branch"> git:(main)</span>
+            <span class="cp-tp-sym"> $</span>
+          </div>
+          <div class="cp-term-cmd">./new_message.sh --interactive</div>
+          <div class="cp-term-output">Initializing secure channel... <span class="cp-ok">✓</span></div>
+          <div class="cp-term-output">Ready to receive message. <span class="cp-ok">✓</span></div>
+          <div class="cp-term-spacer"></div>
+
+          <form class="cp-form" id="cp-form">
+            <div class="cp-field">
+              <label class="cp-label">
+                <span class="cp-label-prompt">$</span>
+                <span class="cp-label-key">name</span>
+                <span class="cp-label-eq">=</span>
+              </label>
+              <input class="cp-input" id="cp-name" type="text" placeholder="Your name" autocomplete="off"/>
+            </div>
+            <div class="cp-field">
+              <label class="cp-label">
+                <span class="cp-label-prompt">$</span>
+                <span class="cp-label-key">email</span>
+                <span class="cp-label-eq">=</span>
+              </label>
+              <input class="cp-input" id="cp-email" type="email" placeholder="your@email.com" autocomplete="off"/>
+            </div>
+            <div class="cp-field">
+              <label class="cp-label">
+                <span class="cp-label-prompt">$</span>
+                <span class="cp-label-key">subject</span>
+                <span class="cp-label-eq">=</span>
+              </label>
+              <input class="cp-input" id="cp-subject" type="text" placeholder="Project type or inquiry" autocomplete="off"/>
+            </div>
+            <div class="cp-field cp-field--msg">
+              <label class="cp-label cp-label--top">
+                <span class="cp-label-prompt">$</span>
+                <span class="cp-label-key">message</span>
+                <span class="cp-label-eq">=</span>
+              </label>
+              <textarea class="cp-input cp-textarea" id="cp-msg" placeholder="Describe your project..." rows="5"></textarea>
+            </div>
+            <div class="cp-term-spacer"></div>
+            <div class="cp-form-footer">
+              <div class="cp-char-count" id="cp-chars">0 / 500 chars</div>
+              <button type="submit" class="cp-submit" id="cp-submit">
+                <span class="cp-submit-idle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  ./send --now
+                </span>
+                <span class="cp-submit-loading" style="display:none">
+                  <span class="cp-spin">◌</span> transmitting...
+                </span>
+                <span class="cp-submit-done" style="display:none">
+                  <span class="cp-ok">✓</span> sent!
+                </span>
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: info cards -->
+    <div class="cp-info">
+
+      <!-- Availability card -->
+      <div class="cp-avail-card" data-reveal="scale">
+        <div class="cp-avail-glow"></div>
+        <div class="cp-avail-header">
+          <div class="cp-avail-pulse-wrap">
+            <span class="cp-avail-ring"></span>
+            <span class="cp-avail-dot"></span>
+          </div>
+          <span class="cp-avail-label">Open to Work</span>
+          <span class="cp-avail-badge">● Active</span>
+        </div>
+        <p class="cp-avail-text">Currently available for Android development roles, freelance projects, and entry-level positions. I typically reply within <strong>24 hours</strong>.</p>
+        <div class="cp-avail-types">
+          <span>Android Dev</span>
+          <span>Freelance</span>
+          <span>Full-time</span>
+          <span>Remote</span>
+        </div>
+      </div>
+
+      <!-- Contact links -->
+      <div class="cp-links">
+        <a href="mailto:mhhasibul.is@gmail.com" class="cp-link-card">
+          <div class="cp-lc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          </div>
+          <div class="cp-lc-body">
+            <span class="cp-lc-label">Email</span>
+            <span class="cp-lc-val">mhhasibul.is@gmail.com</span>
+          </div>
+          <div class="cp-lc-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+        <a href="https://github.com/Hasib-00" target="_blank" class="cp-link-card">
+          <div class="cp-lc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
+          <div class="cp-lc-body">
+            <span class="cp-lc-label">GitHub</span>
+            <span class="cp-lc-val">github.com/Hasib-00</span>
+          </div>
+          <div class="cp-lc-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/hasibul-islam-a6a434385/" target="_blank" class="cp-link-card">
+          <div class="cp-lc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="cp-lc-body">
+            <span class="cp-lc-label">LinkedIn</span>
+            <span class="cp-lc-val">linkedin.com/in/hasibul-islam-a6a434385</span>
+          </div>
+          <div class="cp-lc-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Location card -->
+      <div class="cp-location">
+        <div class="cp-loc-dot"></div>
+        <div>
+          <p class="cp-loc-city">Dhaka, Bangladesh 🇧🇩</p>
+          <p class="cp-loc-zone">UTC+6 · Open to remote work worldwide</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- EmailJS SDK — powers the contact form -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="module" src="js/main.js"></script>
+
+<!-- ══ PROJECT DETAIL DRAWER ══ -->
+<div class="pd-overlay" id="pd-overlay">
+    <div class="pd-backdrop" id="pd-backdrop"></div>
+    <div class="pd-drawer" id="pd-drawer">
+
+        <!-- Drawer title bar -->
+        <div class="pd-titlebar">
+            <div class="pd-titlebar-left">
+                <div class="pd-tb-dots">
+                    <span class="pd-dot pd-dot--red" id="pd-close-btn"></span>
+                    <span class="pd-dot pd-dot--yellow"></span>
+                    <span class="pd-dot pd-dot--green"></span>
+                </div>
+                <span class="pd-tb-path" id="pd-tb-path">~/projects/loading</span>
+            </div>
+            <div class="pd-titlebar-right">
+                <span class="pd-tb-badge" id="pd-tb-badge">Android</span>
+                <button class="pd-close" id="pd-close" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Scrollable content -->
+        <div class="pd-content" id="pd-content">
+
+            <!-- Hero band -->
+            <div class="pd-hero" id="pd-hero">
+                <div class="pd-hero-noise"></div>
+                <div class="pd-hero-inner">
+                    <span class="pd-hero-num" id="pd-hero-num">01</span>
+                    <div>
+                        <h2 class="pd-hero-title" id="pd-hero-title">Project</h2>
+                        <p class="pd-hero-cat" id="pd-hero-cat">Category</p>
+                    </div>
+                    <div class="pd-hero-year" id="pd-hero-year">2024</div>
+                </div>
+            </div>
+
+            <!-- Photo gallery -->
+            <div class="pd-gallery" id="pd-gallery">
+                <div class="pd-gallery-inner" id="pd-gallery-inner"></div>
+            </div>
+
+            <!-- Body grid -->
+            <div class="pd-body">
+
+                <!-- Left col -->
+                <div class="pd-left">
+                    <div class="pd-section-label">// overview</div>
+                    <p class="pd-overview" id="pd-overview"></p>
+
+                    <div class="pd-section-label" style="margin-top:2rem">// tech stack</div>
+                    <div class="pd-stack" id="pd-stack"></div>
+
+                    <div class="pd-section-label" style="margin-top:2rem">// features</div>
+                    <ul class="pd-features" id="pd-features"></ul>
+
+                    <div class="pd-actions">
+                        <a href="#" class="pd-btn pd-btn--primary" id="pd-btn-live">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            Live Demo
+                        </a>
+                        <a href="#" class="pd-btn pd-btn--ghost" id="pd-btn-code">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right col: code window -->
+                <div class="pd-right">
+                    <div class="pd-code-window">
+                        <div class="pd-code-titlebar">
+                            <div class="pd-tb-dots">
+                                <span class="pd-dot pd-dot--red"></span>
+                                <span class="pd-dot pd-dot--yellow"></span>
+                                <span class="pd-dot pd-dot--green"></span>
+                            </div>
+                            <span class="pd-code-filename" id="pd-code-filename">main.kt</span>
+                            <span class="pd-code-lang" id="pd-code-lang">Kotlin</span>
+                        </div>
+                        <div class="pd-code-body">
+                            <div class="pd-code-lines" id="pd-code-lines"></div>
+                            <pre class="pd-code-pre" id="pd-code-pre"></pre>
+                        </div>
+                        <div class="pd-code-scanline"></div>
+                    </div>
+
+                    <!-- Stats row -->
+                    <div class="pd-stats" id="pd-stats"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

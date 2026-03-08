@@ -1,0 +1,163 @@
+/* ══════════════════════════════════════
+   PRELOADER v4 — FAST / CINEMATIC
+══════════════════════════════════════ */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    z-index: var(--z-preloader);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    overflow: hidden;
+}
+#pl-cv {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+
+/* Wordmark */
+.pl-wordmark {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 0.05em;
+}
+.pl-w-char {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(4rem, 12vw, 10rem);
+    color: #fff;
+    letter-spacing: -0.04em;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(60px) scaleY(1.4);
+    animation: plCharIn 0.5s cubic-bezier(0.16,1,0.3,1) calc(var(--i) * 35ms) forwards;
+}
+@keyframes plCharIn {
+    0%   { opacity: 0; transform: translateY(60px) scaleY(1.4); }
+    100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+/* Progress line */
+.pl-line-bar {
+    position: relative;
+    z-index: 2;
+    width: min(380px, 75vw);
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+}
+.pl-line-fill {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+    transition: width 0.08s linear;
+    position: relative;
+}
+.pl-line-fill::after {
+    content: '';
+    position: absolute;
+    right: -1px; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px rgba(255,255,255,0.8);
+}
+
+/* Slash reveal element */
+.pl-slash {
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: #fff;
+    z-index: 3;
+    transform: skewX(-8deg);
+    transform-origin: left;
+}
+
+/* ── Scroll fade-in ── */
+.fade-in {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    transition: opacity var(--duration-base) var(--ease-out-expo),
+                transform var(--duration-base) var(--ease-out-expo);
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* ══════════════════════════════════════
+   PAGE SYSTEM
+══════════════════════════════════════ */
+.page { display: none; }
+.page.page--active { display: block; }
+
+/* ── Active nav indicator ── */
+.nav-links a.nav--active { opacity: 1; }
+.nav-links a.nav--active::after {
+    content: '';
+    display: block;
+    width: 4px; height: 4px;
+    background: var(--white);
+    border-radius: 50%;
+    margin: 3px auto 0;
+}
+
+/* ══════════════════════════════════════
+   PAGE TRANSITION OVERLAY
+══════════════════════════════════════ */
+#page-transition {
+    position: fixed; inset: 0;
+    z-index: 9500;
+    pointer-events: none;
+    display: block;
+    overflow: hidden;
+}
+
+/* ══════════════════════════════════════
+   PAGE ENTRANCE — after transition reveal
+   Page content rises with stagger
+══════════════════════════════════════ */
+.page--active {
+    animation: pageEntrance 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes pageEntrance {
+    0%   { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Nav link base override for animation */
+.nav-links a {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* ══════════════════════════════════════
+   TRANSITION STRIP SHEEN
+   subtle shimmer on covered screen
+══════════════════════════════════════ */
+#page-transition::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(0,200,255,0.015) 50%,
+        transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: ptSheen 1.4s linear infinite;
+    pointer-events: none;
+    z-index: 20;
+}
+@keyframes ptSheen {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
